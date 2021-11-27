@@ -4,11 +4,13 @@ import by.mdhtrnk.pagegenerator.entity.PageEntity;
 import by.mdhtrnk.pagegenerator.repository.PageEntityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@Transactional
 public class PageEntityService implements BaseService<PageEntity> {
 
     private final PageEntityRepository pageEntityRepository;
@@ -27,12 +29,21 @@ public class PageEntityService implements BaseService<PageEntity> {
     public PageEntity save(PageEntity pageEntity) {
         String modifiedSlug = pageEntity.getSlug().replace(" ", "_");
         pageEntity.setSlug(modifiedSlug);
-        if (pageEntityRepository.findBySlug(pageEntity.getSlug()).isEmpty()){
-            return pageEntityRepository.save(pageEntity);
-        } else {
-            throw new RuntimeException("Page already exists");
-        }
+        return pageEntityRepository.saveAndFlush(pageEntity);
+//        if (pageEntityRepository.findBySlug(pageEntity.getSlug()).isEmpty()){
+//            return pageEntityRepository.saveAndFlush(pageEntity);
+//        } else {
+//            throw new RuntimeException("Page already exists");
+//        }
+//        try{
+//            return pageEntityRepository.saveAndFlush(pageEntity);
+//        } catch (Exception ex){
+//            ex.printStackTrace();
+//        }
+//        return null;
     }
+
+
 
     @Override
     public PageEntity findById(Long id) {

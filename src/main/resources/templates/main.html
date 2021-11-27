@@ -17,7 +17,7 @@
             <p th:each="page : ${allPages}">
                 <a th:href="@{/page/{slug}(slug=${page.getSlug()})}" th:text="${page.getMenu_label()}"></a>
                 <a class="btn btn-primary btn-sm" th:href="@{/update/{id}(id=${page.getId()})}">Update</a>
-                <a class="btn btn-danger btn-sm" th:href="@{/delete/${page.getId()}}">Delete</a>
+                <a class="btn btn-danger btn-sm" th:href="@{/delete/{id}(id=${page.getId()})}">Delete</a>
             </p>
     </div>
 

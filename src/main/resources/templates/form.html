@@ -11,7 +11,9 @@
 <div class="card mx-auto mt-5" style="width: 40rem;">
     <div class="card-body">
     <form th:action="@{/form}" th:method="POST" th:object="${pageEntity}">
-        <input type="hidden" class="form-control" th:field="*{id}">
+        <input type="hidden" th:field="*{id}">
+        <input type="hidden" th:field="*{published_at}">
+
         <div class="mb-3 row">
             <label for="title" class="col-sm-3 col-form-label">Title:</label>
             <div class="col-sm-9">

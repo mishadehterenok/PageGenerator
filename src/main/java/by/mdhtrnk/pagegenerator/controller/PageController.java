@@ -34,6 +34,6 @@ public class PageController {
     @GetMapping("/delete/{id}")
     public String deletePage(@PathVariable("id") Long id){
         pageEntityService.deleteById(id);
-        return "main";
+        return "redirect:/main";
     }
 }
