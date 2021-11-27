@@ -30,17 +30,6 @@ public class PageEntityService implements BaseService<PageEntity> {
         String modifiedSlug = pageEntity.getSlug().replace(" ", "_");
         pageEntity.setSlug(modifiedSlug);
         return pageEntityRepository.saveAndFlush(pageEntity);
-//        if (pageEntityRepository.findBySlug(pageEntity.getSlug()).isEmpty()){
-//            return pageEntityRepository.saveAndFlush(pageEntity);
-//        } else {
-//            throw new RuntimeException("Page already exists");
-//        }
-//        try{
-//            return pageEntityRepository.saveAndFlush(pageEntity);
-//        } catch (Exception ex){
-//            ex.printStackTrace();
-//        }
-//        return null;
     }
 
 
